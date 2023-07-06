@@ -2,7 +2,9 @@ import 'package:dio/dio.dart';
 
 import 'api_exceptions.dart';
 
-class AppInterceptors extends Interceptor {
+///[ExceptionInterceptor] class extends to [Interceptor] class from [Dio] package
+///which helps to intercept between api calls and inject our codes and logic
+class ExceptionInterceptors extends Interceptor {
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) {
     print(err.message);
@@ -29,9 +31,11 @@ class AppInterceptors extends Interceptor {
       case DioExceptionType.cancel:
         break;
       case DioExceptionType.badCertificate:
-        break;
+        throw BadRequestException(err.requestOptions);
 
-      ///TODO: no internet connection
+      case DioExceptionType.unknown:
+        throw NoInternetConnectionException(err.requestOptions);
+
       default:
         break;
     }

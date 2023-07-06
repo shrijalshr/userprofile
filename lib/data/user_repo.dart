@@ -1,9 +1,0 @@
-class UserReport{
-  
-
-getUserProfiles()async{
-  
-}
-
-
-}

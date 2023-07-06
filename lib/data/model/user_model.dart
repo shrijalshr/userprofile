@@ -9,7 +9,7 @@ class UserModel {
   Address? address;
   String? phone;
   String? website;
-  Company? company;
+
   UserModel({
     this.id,
     this.name,
@@ -18,7 +18,6 @@ class UserModel {
     this.address,
     this.phone,
     this.website,
-    this.company,
   });
 
   UserModel copyWith({
@@ -29,7 +28,6 @@ class UserModel {
     Address? address,
     String? phone,
     String? website,
-    Company? company,
   }) {
     return UserModel(
       id: id ?? this.id,
@@ -39,7 +37,6 @@ class UserModel {
       address: address ?? this.address,
       phone: phone ?? this.phone,
       website: website ?? this.website,
-      company: company ?? this.company,
     );
   }
 
@@ -52,7 +49,6 @@ class UserModel {
       'address': address?.toMap(),
       'phone': phone,
       'website': website,
-      'company': company?.toMap(),
     };
   }
 
@@ -67,9 +63,6 @@ class UserModel {
           : null,
       phone: map['phone'] != null ? map['phone'] as String : null,
       website: map['website'] != null ? map['website'] as String : null,
-      company: map['company'] != null
-          ? Company.fromMap(map['company'] as Map<String, dynamic>)
-          : null,
     );
   }
 
@@ -80,7 +73,7 @@ class UserModel {
 
   @override
   String toString() {
-    return 'UserModel(id: $id, name: $name, username: $username, email: $email, address: $address, phone: $phone, website: $website, company: $company)';
+    return 'UserModel(id: $id, name: $name, username: $username, email: $email, address: $address, phone: $phone, website: $website)';
   }
 
   @override
@@ -93,8 +86,7 @@ class UserModel {
         other.email == email &&
         other.address == address &&
         other.phone == phone &&
-        other.website == website &&
-        other.company == company;
+        other.website == website;
   }
 
   @override
@@ -105,8 +97,7 @@ class UserModel {
         email.hashCode ^
         address.hashCode ^
         phone.hashCode ^
-        website.hashCode ^
-        company.hashCode;
+        website.hashCode;
   }
 }
 
@@ -242,65 +233,4 @@ class Geo {
 
   @override
   int get hashCode => lat.hashCode ^ lng.hashCode;
-}
-
-class Company {
-  String? name;
-  String? catchPhrase;
-  String? bs;
-  Company({
-    this.name,
-    this.catchPhrase,
-    this.bs,
-  });
-
-  Company copyWith({
-    String? name,
-    String? catchPhrase,
-    String? bs,
-  }) {
-    return Company(
-      name: name ?? this.name,
-      catchPhrase: catchPhrase ?? this.catchPhrase,
-      bs: bs ?? this.bs,
-    );
-  }
-
-  Map<String, dynamic> toMap() {
-    return <String, dynamic>{
-      'name': name,
-      'catchPhrase': catchPhrase,
-      'bs': bs,
-    };
-  }
-
-  factory Company.fromMap(Map<String, dynamic> map) {
-    return Company(
-      name: map['name'] != null ? map['name'] as String : null,
-      catchPhrase:
-          map['catchPhrase'] != null ? map['catchPhrase'] as String : null,
-      bs: map['bs'] != null ? map['bs'] as String : null,
-    );
-  }
-
-  String toJson() => json.encode(toMap());
-
-  factory Company.fromJson(String source) =>
-      Company.fromMap(json.decode(source) as Map<String, dynamic>);
-
-  @override
-  String toString() =>
-      'Company(name: $name, catchPhrase: $catchPhrase, bs: $bs)';
-
-  @override
-  bool operator ==(covariant Company other) {
-    if (identical(this, other)) return true;
-
-    return other.name == name &&
-        other.catchPhrase == catchPhrase &&
-        other.bs == bs;
-  }
-
-  @override
-  int get hashCode => name.hashCode ^ catchPhrase.hashCode ^ bs.hashCode;
 }

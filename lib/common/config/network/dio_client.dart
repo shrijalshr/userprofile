@@ -4,6 +4,10 @@ import 'api_endpoint.dart';
 import 'app_interceptor.dart';
 import 'loggin_interceptor.dart';
 
+///[DioClient] class is a singleton class that implements the dio network fucntionalities.
+///[init] method initializes the dio client instance by injecting the necessary Base Options for the Dio
+///[get] methodd performs GET requests
+
 class DioClient {
   static final DioClient _instance = DioClient._internal();
   factory DioClient() => _instance;
@@ -26,12 +30,12 @@ class DioClient {
         Logging(),
       )
       ..interceptors.add(
-        AppInterceptors(),
+        ExceptionInterceptors(),
       );
   }
 
   ///Get Method
-  Future<Map<String, dynamic>> get(
+  Future<dynamic> get(
     String path, {
     Map<String, dynamic>? queryParameters,
     Options? options,

@@ -2,6 +2,8 @@ import 'dart:developer';
 
 import 'package:dio/dio.dart';
 
+///[Logging] interceptor logs every requeusts and responses made and received during the communication
+///with the server via dio client.
 class Logging extends Interceptor {
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {

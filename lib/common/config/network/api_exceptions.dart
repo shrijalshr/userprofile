@@ -1,3 +1,7 @@
+///This files consist of almost every network exception that we might face during
+///runtime of the application. The [Exception] classes here extends [DioException] class
+///for implementing exceptions.
+
 import 'package:dio/dio.dart';
 
 class BadRequestException extends DioException {
