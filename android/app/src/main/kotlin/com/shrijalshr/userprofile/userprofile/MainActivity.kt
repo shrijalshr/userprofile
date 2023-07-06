@@ -1,0 +1,6 @@
+package com.shrijalshr.userprofile.userprofile
+
+import io.flutter.embedding.android.FlutterActivity
+
+class MainActivity: FlutterActivity() {
+}
